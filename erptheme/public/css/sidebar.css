@@ -1,0 +1,28 @@
+/* Hide sidebar labels but keep icons visible */
+.sidebar-item-label {
+  display: none !important;
+}
+
+/* Ensure icons remain visible and properly spaced */
+.sidebar-item-icon {
+  display: inline-block !important;
+  margin-right: 0 !important;
+}
+
+/* Adjust anchor element to center content when label is hidden */
+.item-anchor {
+  display: flex !important;
+  /* justify-content: center !important;
+  align-items: center !important;
+  padding: 8px 12px !important; */
+}
+
+/* Maintain proper spacing for sidebar items */
+.desk-sidebar-item {
+  padding: 4px 0 !important;
+}
+
+/* Ensure the sidebar section doesn't have extra padding */
+.standard-sidebar-section {
+  padding: 0 !important;
+}

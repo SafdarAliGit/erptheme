@@ -1,0 +1,56 @@
+.page-content-wrapper {
+  background: linear-gradient(to bottom, #E85F2B, #393186, #58B5DE);
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.for-login {
+  margin-top: 15%;
+}
+.login-content.page-card {
+  background-color: green;
+  color: #fff;
+}
+
+.login-content.page-card {
+    background-color: green; !important;
+  border: none !important;
+}
+
+#login_email {
+  height: 35px !important;
+}
+
+#login_password {
+  height: 35px !important;
+}
+
+.btn.btn-sm.btn-primary.btn-block.btn-login {
+  height: 35px !important;
+  background-color: #3A3185 !important;
+  color: #fff !important;
+}
+a {
+  color: black !important;
+}
+.navbar.navbar-light.navbar-expand-lg {
+  background-color: #5198CB;
+  color:#fff;
+}
+#page-login {
+  background-color: #E85F2B !important;
+}
+
+
+.page-card-head {
+    text-align: center !important;
+    margin-bottom: 0px !important;
+}
+html, body {
+    height: 100%;
+    font-family: var(--font-stack);
+    font-variation-settings: "opsz" 24;
+    BACKGROUND-COLOR: blue;
+}
+

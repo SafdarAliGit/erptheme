@@ -1,0 +1,97 @@
+
+{% extends "templates/web.html" %}
+
+{% macro email_login_body() -%}
+{% if not disable_user_pass_login or (ldap_settings and ldap_settings.enabled) %}
+
+{%- block navbar -%}{%- endblock -%}
+{%- block footer -%}{%- endblock -%}
+
+<div class="page-card-body">
+  <div style="text-align: center;">
+    <img src="/assets/erptheme/images/merrix logo.png" alt="Login Background" style="width: 125px; height: 125px;">
+  </div>
+  
+  <div class="form-group">
+    <label class="form-label sr-only" for="login_email">{{ login_label or _("Email")}}</label>
+    <div class="input-title">
+      <p>Email or User name</p>
+    </div>
+    <div class="email-field">
+      <input type="text" id="login_email" class="form-control"
+        placeholder="{% if login_name_placeholder %}{{ login_name_placeholder }}{% else %}{{ _('Please Enter Your Email or User name') }}{% endif %}"
+        required autofocus autocomplete="username">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label sr-only" for="login_password">{{ _("Password") }}</label>
+    <div class="input-title">
+      <p>Password</p>
+    </div>
+    <div class="password-field">
+      <input type="password" id="login_password" class="form-control" placeholder="Please Enter Your Password"
+        autocomplete="current-password" required>
+
+      <span toggle="#login_password" class="toggle-password text-muted">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <!-- Your eye icon SVG code -->
+        </svg>
+      </span>
+    </div>
+  </div>
+
+  <p class="forgot-password-message">
+    <a href="#forgot">{{ _("Forgot Password?") }}</a>
+  </p>
+</div>
+{% endif %}
+<div class="page-card-actions">
+  {% if not disable_user_pass_login %}
+  <button class="btn btn-sm btn-primary btn-block btn-login" type="submit">
+    {{ _("Login") }}</button>
+  {% endif %}
+</div>
+{% endmacro %}
+
+{% macro logo_section() %}
+<div class="page-card-head">
+  
+  <h4>Merrix ERP</h4>
+</div>
+{% endmacro %}
+{% block head_include %}
+  <link rel="stylesheet" href="/assets/erptheme/css/login.css?ver=1">
+{% endblock %}
+
+{% block page_content %}
+<div>
+  <noscript>
+    <!-- No script warning -->
+  </noscript>
+  
+  <div class="background-login"></div>
+  
+  <section class='for-login'>
+    <div class="big-container">
+      <div class="login-content page-card">
+        {{ logo_section() }}
+        <div class="welcome-sec">
+          <span>Welcome back!</span>
+          <div class="hand-icon"></div>
+          <p>Please Login to your Account</p>
+        </div>
+        <form class="form-signin form-login" role="form">
+          {{ email_login_body() }}
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other sections (forgot password, signup) -->
+</div>
+{% endblock %}
+
+{% block script %}
+<script>{% include "erptheme/templates/includes/login.js" %}</script>
+{% endblock %}

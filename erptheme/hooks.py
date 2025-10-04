@@ -1,9 +1,15 @@
+from tessuto_hr.hooks import doctype_js
+
+
 app_name = "erptheme"
 app_title = "Erptheme"
 app_publisher = "Safdar Ali"
 app_description = "theme"
 app_email = "safdar211@gmail.com"
 app_license = "mit"
+
+
+
 
 # Apps
 # ------------------
@@ -25,9 +31,24 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/erptheme/css/erptheme.css"
-# app_include_js = "/assets/erptheme/js/erptheme.js"
+app_include_css = [
+    "/assets/erptheme/css/custom_theme.css",
+    # "/assets/erptheme/css/sidebar.css"
 
+]
+
+app_include_js = [
+    "/assets/erptheme/js/custom_ui.js",
+    # "/assets/erptheme/js/sidebar.js"
+]
+
+
+doctype_js = {
+    "Sales Invoice": "/public/js/sales_invoice.js"
+}
+doctype_list_js = {
+    "Sales Invoice": "/public/js/sales_invoice_list.js"
+}
 # include js, css files in header of web template
 # web_include_css = "/assets/erptheme/css/erptheme.css"
 # web_include_js = "/assets/erptheme/js/erptheme.js"
