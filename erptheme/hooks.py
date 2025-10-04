@@ -1,5 +1,3 @@
-from tessuto_hr.hooks import doctype_js
-
 
 app_name = "erptheme"
 app_title = "Erptheme"
