@@ -14,19 +14,33 @@
 
       <div class="form-group">
         <div class="input-title"><p>Email or User name</p></div>
-        <input type="text" id="login_email" class="form-control"
+        <input type="text"
+               id="login_email"
+               class="form-control"
                placeholder="{% if login_name_placeholder %}{{ login_name_placeholder }}{% else %}{{ _('Please Enter Your Email or User name') }}{% endif %}"
-               required autofocus autocomplete="username">
+               required
+               autofocus
+               autocomplete="username">
       </div>
 
       <div class="form-group">
         <div class="input-title"><p>Password</p></div>
-        <div class="password-field">
-          <input type="password" id="login_password" class="form-control"
+        <div class="password-wrapper">
+          <input type="password"
+                 id="login_password"
+                 class="form-control"
                  placeholder="Please Enter Your Password"
-                 autocomplete="current-password" required>
-          <span toggle="#login_password" class="toggle-password text-muted">
-            <svg …> <!-- eye icon --> </svg>
+                 autocomplete="current-password"
+                 required>
+          <span class="toggle-password" data-toggle="login_password">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2">
+              <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
           </span>
         </div>
       </div>
@@ -49,7 +63,7 @@
 
 {% macro logo_section() %}
   <div class="page-card-head">
-    <h4 style="text-align: center;">Merrix ERP</h4>
+    <h4 class="logo-title">Merrix ERP</h4>
   </div>
 {% endmacro %}
 
@@ -87,5 +101,25 @@
 
 
 {% block script %}
+  <script>
+    // Toggle password visibility
+    document.addEventListener("DOMContentLoaded", function() {
+      const toggles = document.querySelectorAll(".toggle-password");
+      toggles.forEach(function(toggle) {
+        toggle.addEventListener("click", function() {
+          const inputId = toggle.getAttribute("data-toggle");
+          const input = document.getElementById(inputId);
+          if (!input) return;
+          if (input.type === "password") {
+            input.type = "text";
+            toggle.classList.add("showing");
+          } else {
+            input.type = "password";
+            toggle.classList.remove("showing");
+          }
+        });
+      });
+    });
+  </script>
   <script>{% include "erptheme/templates/includes/login.js" %}</script>
 {% endblock %}

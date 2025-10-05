@@ -31,7 +31,7 @@ app_license = "mit"
 # include js, css files in header of desk.html
 app_include_css = [
     "/assets/erptheme/css/custom_theme.css",
-    # "/assets/erptheme/css/sidebar.css"
+    "/assets/erptheme/css/sidebar.css"
 
 ]
 
@@ -42,10 +42,12 @@ app_include_js = [
 
 
 doctype_js = {
-    "Sales Invoice": "/public/js/sales_invoice.js"
+    "Sales Invoice": "/public/js/sales_invoice.js",
+    
 }
 doctype_list_js = {
-    "Sales Invoice": "/public/js/sales_invoice_list.js"
+    "Sales Invoice": "/public/js/sales_invoice_list.js",
+    "Purchase Invoice": "/public/js/purchase_invoce_list.js"
 }
 # include js, css files in header of web template
 # web_include_css = "/assets/erptheme/css/erptheme.css"

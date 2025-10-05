@@ -159,5 +159,29 @@ a {
 }
 
 .page-card-body {
-  height: 350px;
+  height: 375px;
 }
+
+.btn.btn-primary{
+  background-color: transparent !important;
+  border: 1px solid #fff !important;
+  color: #fff !important;  
+}
+
+.toggle-password {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  /* fixed size you prefer: */
+  width: 1.5em;
+  height: 1.5em;
+  /* optional: color */
+  color: #666;
+}
+
+.toggle-password svg {
+  width: 100%;
+  height: 100%;
+}
+
