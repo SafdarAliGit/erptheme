@@ -1,31 +1,27 @@
-/* ===================== 🌈 Background ===================== */
+/* === Background & Animation === */
 body {
   margin: 0;
-  background: linear-gradient(-45deg, #6a11cb, #2575fc, #067d57, #185a9d);
+  background: linear-gradient(-45deg, #6a11cb, #2575fc, #43cea2, #185a9d);
   background-size: 400% 400%;
   animation: gradientMotion 18s ease infinite;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* do not make body flex container that forces shrink */
 }
 
-/* Smooth gradient animation */
 @keyframes gradientMotion {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* ===================== 🧊 Main Container ===================== */
+/* === Containers & Layout === */
 .big-container {
-  background: transparent;
   min-height: 100vh;
   display: flex;
   align-items: center;
   padding-left: 470px;
+  /* do not justify-content:center or flex-wrap that shrinks children */
 }
 
-/* Page background image */
 .page-content-wrapper {
   background-image: url("/files/login_back.jpg");
   background-size: cover;
@@ -36,7 +32,7 @@ body {
   padding: 0;
 }
 
-/* ===================== 💎 Login Card (Glass) ===================== */
+/* === Login Card (Glass style) === */
 .login-content {
   position: relative;
   background: rgba(255, 255, 255, 0.12);
@@ -45,14 +41,16 @@ body {
   border-radius: 20px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
   border: 1px solid rgba(255, 255, 255, 0.18);
+
   width: 100%;
-  max-width: 450px;
+  max-width: 450px;   /* Keeps the standard width */
   margin: 0 auto;
   padding: 40px;
+
   overflow: hidden;
 }
 
-/* Elegant shimmer light across card */
+/* Shimmer effect on login box */
 .login-content::before {
   content: "";
   position: absolute;
@@ -74,27 +72,23 @@ body {
 
 @keyframes shimmer {
   0% { transform: translateX(-100%) rotate(25deg); }
-  100% { transform: translateX(100%) rotate(25deg); }
+  100% { transform: translateX(100%) rotate(25eg); }
 }
 
-/* ===================== 🖼 Logo Section ===================== */
-.page-card-head {
+/* === Logo (inside login card) === */
+.logo-wrapper {
   text-align: center;
   margin-bottom: 30px;
 }
 
-.page-card-head .app-logo {
-  height: 60px;
-  margin-bottom: 15px;
+.login-logo {
+  width: 125px;
+  height: 125px;
+  object-fit: contain;
+  margin: 0 auto;
 }
 
-.page-card-head h4 {
-  color: #ffffff;
-  font-size: 22px;
-  margin: 0;
-}
-
-/* ===================== ✨ Welcome Section ===================== */
+/* === Welcome Section === */
 .welcome-sec {
   text-align: center;
   margin-bottom: 30px;
@@ -112,7 +106,7 @@ body {
   margin-top: 0;
 }
 
-/* ===================== ✍ Form Elements ===================== */
+/* === Form Elements === */
 .form-group {
   margin-bottom: 20px;
 }
@@ -126,7 +120,7 @@ body {
 .form-control {
   height: 28px;
   border-radius: 23px;
-  border: 1px solid #000;
+  border: 1px solid #717772;
   background-color: rgba(255, 255, 255, 0.1);
   color: #fff;
 }
@@ -149,19 +143,21 @@ a {
   text-decoration: none;
 }
 
-/* ===================== 📱 Responsive ===================== */
+/* === Responsive === */
 @media (max-width: 768px) {
   .login-content {
     padding: 32px;
-    width: 198%;
+    width: 100%;
     max-width: 468px;
   }
-
   .welcome-sec span {
     font-size: 18px;
   }
-
   .big-container {
     padding-left: 0;
   }
+}
+
+.page-card-body {
+  height: 350px;
 }
