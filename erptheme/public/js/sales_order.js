@@ -1,4 +1,4 @@
-frappe.ui.form.on('Sales Invoice', { // e.g., 'Sales Invoice'
+frappe.ui.form.on('Sales Order', { // e.g., 'Sales Invoice'
     refresh: function(frm) {
         // Add a custom button to the form
         frm.add_custom_button(__('<- Go Back'), function() {

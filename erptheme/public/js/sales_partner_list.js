@@ -50,37 +50,10 @@ function insert_custom_block(listview) {
       <div class="custom-box">
         <div class="box-left">
           <div class="box-value" id="invoice_count_box">0</div>
-          <div class="box-title">Total Invoices</div>
+          <div class="box-title">Total Sales Partners</div>
         </div>
         <div class="box-right">
-          <img src="/assets/erptheme/images/countdown.png" alt="icon" style="width: 42px; height: 42px;">
-        </div>
-      </div>
-      <div class="custom-box">
-        <div class="box-left">
-          <div class="box-value" id="invoice_total_box">0</div>
-          <div class="box-title">Total Amount</div>
-        </div>
-        <div class="box-right">
-          <img src="/assets/erptheme/images/currency.png" alt="icon" style="width: 42px; height: 42px;">
-        </div>
-      </div>
-      <div class="custom-box">
-        <div class="box-left">
-          <div class="box-value" id="unpaid_box">0</div>
-          <div class="box-title">Unpaid</div>
-        </div>
-        <div class="box-right">
-          <img src="/assets/erptheme/images/unpaid.png" alt="icon" style="width: 42px; height: 42px;">
-        </div>
-      </div>
-      <div class="custom-box">
-        <div class="box-left">
-          <div class="box-value" id="draft_box">0</div>
-          <div class="box-title">Draft</div>
-        </div>
-        <div class="box-right">
-          <img src="/assets/erptheme/images/draft.png" alt="icon" style="width: 42px; height: 42px;">
+          <img src="/assets/erptheme/images/sales_partners.png" alt="icon" style="width: 42px; height: 42px;">
         </div>
       </div>
     </div>
@@ -90,7 +63,7 @@ function insert_custom_block(listview) {
 
   container.insertAdjacentHTML("afterbegin", blockHTML);
   load_owner_info();
-  update_sales_invoice_stats();
+  update_sales_partner_stats();
 }
 
 // ================= Observe container mutations to reinsert if removed ====================
@@ -126,39 +99,39 @@ function load_owner_info() {
 }
 
 // ================= Update stats ====================
-function update_sales_invoice_stats() {
+function update_sales_partner_stats() {
   frappe.call({
     method: "frappe.client.get_list",
     args: {
-      doctype: "Sales Invoice",
-      fields: ["name", "outstanding_amount"],
+      doctype: "Sales Partner",
+      fields: ["name"],
       filters: []
     },
     callback: function (r) {
       if (r.message) {
         const invoices = r.message;
         const totalInvoices = invoices.length;
-        const totalOutstanding = invoices.reduce((sum, inv) => sum + (parseFloat(inv.outstanding_amount) || 0), 0);
+        // const totalOutstanding = invoices.reduce((sum, inv) => sum + (parseFloat(inv.rounded_total) || 0), 0);
 
         const countEl = document.getElementById("invoice_count_box");
-        const totalEl = document.getElementById("invoice_total_box");
+        // const totalEl = document.getElementById("invoice_total_box");
         if (countEl) countEl.textContent = totalInvoices ;
-        if (totalEl) totalEl.textContent = totalOutstanding.toFixed(2);
+        // if (totalEl) totalEl.textContent = totalOutstanding.toFixed(2);
       }
     }
   });
 
-  frappe.db.count("Sales Invoice", { filters: { outstanding_amount: [">", 0] } })
-    .then(c => {
-      const e = document.getElementById("unpaid_box");
-      if (e) e.textContent = c;
-    });
+//   frappe.db.count("Sales Partner", { filters: { advance_paid: [">", 0] } })
+//     .then(c => {
+//       const e = document.getElementById("unpaid_box");
+//       if (e) e.textContent = c;
+//     });
 
-  frappe.db.count("Sales Invoice", { filters: { docstatus: 0 } })
-    .then(c => {
-      const e = document.getElementById("draft_box");
-      if (e) e.textContent = c;
-    });
+//   frappe.db.count("Sales Partner", { filters: { enabled: 1 } })
+//     .then(c => {
+//       const e = document.getElementById("draft_box");
+//       if (e) e.textContent = c;
+//     });
 }
 
 // ================= CSS injection ====================
@@ -212,7 +185,7 @@ if (!document.getElementById("custom-list-box-style")) {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   padding: 16px 20px 20px;
-  min-width: 220px;
+  max-width: 320px;
   transition: all 0.2s ease;
   display: flex;
   justify-content: space-between; /* split left/right */
@@ -294,10 +267,10 @@ if (!document.getElementById("custom-list-box-style")) {
 }
 
 // =============== Hook into ListView lifecycle ===============
-extend_listview_event("Sales Invoice", "onload", function (listview) {
+extend_listview_event("Sales Partner", "onload", function (listview) {
   insert_custom_block(listview);
   observe_layout_section(listview);
-  update_sales_invoice_stats();
+  update_sales_partner_stats();
 });
 
 

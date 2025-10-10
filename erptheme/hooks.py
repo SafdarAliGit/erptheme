@@ -9,6 +9,9 @@ app_license = "mit"
 
 
 
+# after_migrate = [
+#     "erptheme.erptheme.utils.workspace.remove_example_selling_dashboard"
+# ]
 # Apps
 # ------------------
 
@@ -23,7 +26,7 @@ app_license = "mit"
 # 		"route": "/erptheme",
 # 		"has_permission": "erptheme.api.permission.has_app_permission"
 # 	}
-# ]
+# ]j
 
 # Includes in <head>
 # ------------------
@@ -36,18 +39,28 @@ app_include_css = [
 ]
 
 app_include_js = [
+    "/assets/erptheme/js/charts/chart.js",
     "/assets/erptheme/js/custom_ui.js",
-    # "/assets/erptheme/js/sidebar.js"
+   "/assets/erptheme/js/global_back_button.js",
+   "/assets/erptheme/js/sidebar.js"
 ]
-
 
 doctype_js = {
     "Sales Invoice": "/public/js/sales_invoice.js",
-    
+    "Quotation": "/public/js/quotation.js",
+    "Sales Order": "/public/js/sales_order.js",
+    "Sales Person": "/public/js/sales_person.js",
+    "Sales Partner": "/public/js/sales_partner.js",
+    "Customer": "/public/js/customer.js"
 }
 doctype_list_js = {
     "Sales Invoice": "/public/js/sales_invoice_list.js",
-    "Purchase Invoice": "/public/js/purchase_invoce_list.js"
+    # "Purchase Invoice": "/public/js/purchase_invoce_list.js",
+    "Quotation": "/public/js/quotation_list.js",
+    "Sales Order": "/public/js/sales_order_list.js",
+    "Sales Person": "/public/js/sales_person_list.js",
+    "Sales Partner": "/public/js/sales_partner_list.js",
+    # "Customer": "/public/js/customer_list.js"
 }
 # include js, css files in header of web template
 # web_include_css = "/assets/erptheme/css/erptheme.css"
@@ -263,3 +276,6 @@ doctype_list_js = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+required_apps = [
+    "erpnext"
+]

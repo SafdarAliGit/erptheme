@@ -43,7 +43,7 @@
   transition: all 0.3s ease;
   color: #2d3748;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .standard-sidebar-label:hover {
@@ -172,7 +172,7 @@
 .sidebar-item-label {
   flex: 1;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 16px;
   transition: all 0.3s ease;
   letter-spacing: 0.2px;
 }
@@ -258,7 +258,7 @@
 }
 
 .dropdown-item-label {
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 500;
 }
 
@@ -309,7 +309,7 @@
   }
   
   .sidebar-item-label {
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 

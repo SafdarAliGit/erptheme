@@ -90,7 +90,7 @@ function insert_custom_block(listview) {
 
   container.insertAdjacentHTML("afterbegin", blockHTML);
   load_owner_info();
-  update_sales_invoice_stats();
+  update_quotation_stats();
 }
 
 // ================= Observe container mutations to reinsert if removed ====================
@@ -126,19 +126,19 @@ function load_owner_info() {
 }
 
 // ================= Update stats ====================
-function update_sales_invoice_stats() {
+function update_quotation_stats() {
   frappe.call({
     method: "frappe.client.get_list",
     args: {
-      doctype: "Sales Invoice",
-      fields: ["name", "outstanding_amount"],
+      doctype: "Quotation",
+      fields: ["name", "rounded_total"],
       filters: []
     },
     callback: function (r) {
       if (r.message) {
         const invoices = r.message;
         const totalInvoices = invoices.length;
-        const totalOutstanding = invoices.reduce((sum, inv) => sum + (parseFloat(inv.outstanding_amount) || 0), 0);
+        const totalOutstanding = invoices.reduce((sum, inv) => sum + (parseFloat(inv.rounded_total) || 0), 0);
 
         const countEl = document.getElementById("invoice_count_box");
         const totalEl = document.getElementById("invoice_total_box");
@@ -148,13 +148,13 @@ function update_sales_invoice_stats() {
     }
   });
 
-  frappe.db.count("Sales Invoice", { filters: { outstanding_amount: [">", 0] } })
-    .then(c => {
-      const e = document.getElementById("unpaid_box");
-      if (e) e.textContent = c;
-    });
+  // frappe.db.count("Quotation", { filters: { outstanding_amount: [">", 0] } })
+  //   .then(c => {
+  //     const e = document.getElementById("unpaid_box");
+  //     if (e) e.textContent = c;
+  //   });
 
-  frappe.db.count("Sales Invoice", { filters: { docstatus: 0 } })
+  frappe.db.count("Quotation", { filters: { docstatus: 0 } })
     .then(c => {
       const e = document.getElementById("draft_box");
       if (e) e.textContent = c;
@@ -294,10 +294,10 @@ if (!document.getElementById("custom-list-box-style")) {
 }
 
 // =============== Hook into ListView lifecycle ===============
-extend_listview_event("Sales Invoice", "onload", function (listview) {
+extend_listview_event("Quotation", "onload", function (listview) {
   insert_custom_block(listview);
   observe_layout_section(listview);
-  update_sales_invoice_stats();
+  update_quotation_stats();
 });
 
 
